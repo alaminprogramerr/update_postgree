@@ -16,7 +16,8 @@ class Sighup extends React.Component {
         contactnumber:'',
         description:'',
         password:'',
-        massage:''
+        massage:'',
+        errorLog:''
     }
     
   
@@ -34,12 +35,15 @@ class Sighup extends React.Component {
             this.setState({massage:res.data.massage})
         })
         .catch(err=>{
-            this.setState({massage:err.response.massage})
+            this.setState({errorLog:err.response.data.massage})
         })
+    }
+    componentDidMount(){
+        window.localStorage.removeItem('application_data')
     }
     render(){
         return(
-            <div className="col-md-4 offset-md-4">
+            <div className="col-md-6 offset-md-1">
                 {this.state.massage?
                 <Card className="mt-5">
                     <CardActionArea>
@@ -54,6 +58,7 @@ class Sighup extends React.Component {
                         <CardContent>
                             <form >
                                 <h3>Sign Up Here</h3>
+                                <b className="text-warning"> {this.state.errorLog?this.state.errorLog:''} </b>
                                 <p className="text-warning"> {this.state.massage} </p>
                                 <div className="row">
                                     <div className="col-md-6">
@@ -84,7 +89,7 @@ class Sighup extends React.Component {
                     </CardActionArea>
                     <CardActions>
                         <Button size="small" color="primary" onClick={this.submitHandler}>Submit</Button>
-                        <Link to ='/signup'>Go to Login</Link>
+                        <Link to ='/login'>Go to Login</Link>
 
                     </CardActions>
                 </Card>}

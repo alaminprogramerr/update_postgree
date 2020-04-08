@@ -17,7 +17,12 @@ class Edit extends React.Component {
         id:''
     }
     
-  
+  componentDidMount(){
+      
+    if(!window.localStorage.getItem('application_data')){
+        window.location.href='/login'
+    }
+  }
 //   onFileChoose=(event)=>{
 //     console.log(event.target.files[0].name)
 //     console.log(event.target.files[0].name)

@@ -6,13 +6,15 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import { Input } from '@material-ui/core';
 import Axios from 'axios'
+import { Link } from 'react-router-dom';
 
 class Add extends React.Component {
     state={
         title:'',
         description:'',
         file:{},
-        label:'Choose a Image'
+        label:'Choose a Image',
+        success:''
     }
     
   
@@ -40,16 +42,30 @@ class Add extends React.Component {
    formData.append('file', this.state.file)
    Axios.post('/create',formData)
    .then(res=>{
-        console.log(res.data)
+       this.setState({success:res.data.massage})
    })
    .catch(err=>{
        console.log(err.response.data)
    })
 }
+componentDidMount(){
+    
+    if(!window.localStorage.getItem('application_data')){
+        window.location.href='/login'
+    }
+}
   
     render(){
         return(
-            <div className="col-md-6 offset-md-3">
+            <div className="col-md-6 offset-md-3 p-3">
+                {this.state.success?
+                <div className="col-md-6 offset-md-3">
+                    <CardContent>
+                        <h4 className="text-center"> {this.state.success} </h4>
+                        <Link to='/home'>Go To Home</Link>
+                    </CardContent>
+                </div>
+                :
                 <Card  className="mt-5">
                     <CardActionArea>
                         <CardContent>
@@ -94,7 +110,7 @@ class Add extends React.Component {
                     <CardActions>
                         <Button size="small" color="primary" onClick={this.submitHandler}>Submit</Button>
                     </CardActions>
-                </Card>
+                </Card>}
             </div>
         )
     }

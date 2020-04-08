@@ -15,7 +15,9 @@ class Login extends React.Component {
         errorLog:''
     }
     
-  
+  componentDidMount(){
+      window.localStorage.removeItem('application_data')
+  }
   changeHandler=(event)=>{
     event.preventDefault()
     this.setState({
@@ -44,7 +46,7 @@ class Login extends React.Component {
                         <CardContent>
                             <form >
                                 <h3>Login Here</h3>
-                                <p className="text-warning"> {this.state.errorLog?this.state.errorLog:''} </p>
+                                <b className="text-warning"> {this.state.errorLog?this.state.errorLog:''} </b>
                                 <Input onChange={this.changeHandler} className="form-control mt-3" placeholder="Email" name="email" value={this.state.email} />
                                 <Input onChange={this.changeHandler} className="form-control mt-3" placeholder="Password" type="password" name="password" value={this.state.password} />
 

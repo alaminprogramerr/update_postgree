@@ -94,7 +94,7 @@ export default function PrimarySearchAppBar() {
     if(token){
       setapplication_data(true)
     }
-  })
+  },[])
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -112,7 +112,11 @@ export default function PrimarySearchAppBar() {
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
-
+  const logout=()=>{
+    localStorage.removeItem('application_data')
+    window.location.href='/login'
+    handleMenuClose()
+  }
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
     <Menu
@@ -125,7 +129,7 @@ export default function PrimarySearchAppBar() {
       onClose={handleMenuClose}
     >
       <MenuItem onClick={handleMenuClose}><Link to='/profile'>My Account</Link></MenuItem>
-      <MenuItem onClick={handleMenuClose}>Log Out</MenuItem>
+      <MenuItem onClick={logout}>Log Out</MenuItem>
     </Menu>
   );
 

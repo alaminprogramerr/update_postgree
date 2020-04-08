@@ -14,6 +14,9 @@ class Home extends React.Component {
         application:[]
     }
     componentDidMount(){
+        if(!window.localStorage.getItem('application_data')){
+            window.location.href='/login'
+        }
         Axios.get('/all')
         .then(res=>{
             this.setState({application:res.data})
@@ -40,7 +43,7 @@ class Home extends React.Component {
     }
     render(){
         return(
-            <div className="col-md-8 offset-md-2">
+            <div className="col-md-8 offset-md-2 mb-5 ">
                 {
                     this.state.application.map(single=>{
                         return(

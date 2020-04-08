@@ -11,14 +11,17 @@ class Profile extends React.Component {
         user:{}
     }
     componentDidMount(){
+        
+        if(!window.localStorage.getItem('application_data')){
+            window.location.href='/login'
+        }
         let token =window.localStorage.getItem('application_data')
         var decoded = decoder(token)
-        console.log(decoded)
-        console.log(decoded)
-        console.log(decoded)
-        console.log(decoded)
-        console.log(decoded)
         this.setState({user:{...decoded}})
+    }
+    logout=()=>{
+        localStorage.removeItem('application_data')
+        window.location.href='/login'
     }
     render(){
         return(
@@ -32,13 +35,13 @@ class Profile extends React.Component {
                             <p>Contact Number: {this.state.user.contactnumber} </p>
                         </Typography>
                         <Typography variant="body2" color="textSecondary" className="mt-4" component="p">
-                            <h6>About yours</h6>
+                            <h6 style={{textDecoration:'underline'}}>About yours:</h6>
                             <p style={{fontSize:'18px'}}> {this.state.user.description} </p>
                         </Typography>
                         </CardContent>
                     </CardActionArea>
                     <CardActions>
-                        <Button size="small"  color="danger">Log Out</Button>
+                        <Button size="small"  color="danger" onClick={this.logout}>Log Out</Button>
                     </CardActions>
                 </Card>
             </div>

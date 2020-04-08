@@ -13,7 +13,7 @@ const register= (req, res)=>{
     const {name , email , password, contactnumber ,description} = req.body
     console.log(name, email, password, contactnumber, description)
     if(!name ||!email||!password||!contactnumber||!description){
-        return res.status(400).json({massage:"Please Enter Fillup all Filed"})
+        return res.status(400).json({massage:"Please  Fillup all Required Data"})
     }
 
     client.query('SELECT * from user_table where email=$1',[email],(err, result)=>{
@@ -54,6 +54,9 @@ const login=(req, res)=>{
         if(err){
             console.log(err)
             return res.status(500).json({massage:"Server error occurd "})
+        }
+        if(result.rowCount<1){
+            return res.status(400).json({error:"User Not Exist "})
         }
         bcrypt.compare(req.body.password , result.rows[0].password,(err,success)=>{
             if(err){
