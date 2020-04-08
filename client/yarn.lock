@@ -7130,6 +7130,11 @@ jsx-ast-utils@^2.2.1, jsx-ast-utils@^2.2.3:
     array-includes "^3.0.3"
     object.assign "^4.1.0"
 
+jwt-decode@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/jwt-decode/-/jwt-decode-2.2.0.tgz#7d86bd56679f58ce6a84704a657dd392bba81a79"
+  integrity sha1-fYa9VmefWM5qhHBKZX3TkruoGnk=
+
 jwt-decoder@^0.0.0:
   version "0.0.0"
   resolved "https://registry.yarnpkg.com/jwt-decoder/-/jwt-decoder-0.0.0.tgz#aa4fc48aec0a7560e1f7a9050dfd68e6980b79be"
