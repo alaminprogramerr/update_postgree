@@ -7,9 +7,10 @@
     "@material-ui/icons": "^4.9.1",
     "axios": "^0.19.2",
     "cra-template": "1.0.3",
-    "google-map-react": "^1.1.7",
     "jwt-decode": "^2.2.0",
     "jwt-decoder": "^0.0.0",
+    "material-ui-popup-state": "^1.5.4",
+    "react-router-dom": "^5.1.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1"
